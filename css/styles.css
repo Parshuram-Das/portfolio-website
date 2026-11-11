@@ -1,0 +1,350 @@
+/* ==========================================================================
+   Parshuram Das Portfolio — Modern Web CSS Layer
+   Mobile-first foundation (320px -> 375px -> 425px -> 1024px -> 1440px -> 3000px)
+   ========================================================================== */
+
+:root {
+  color-scheme: light;
+  --surface-canvas: #fafaf8;
+  --surface-card: #ffffff;
+  --surface-subtle: #f2f2ee;
+  --border-hairline: #e4e4de;
+  --ink-primary: #111318;
+  --ink-secondary: #525866;
+  --accent-primary: #2563eb;
+  --accent-soft: rgba(37, 99, 235, 0.1);
+  --grid-line: rgba(17, 19, 24, 0.045);
+  --header-bg: rgba(250, 250, 248, 0.84);
+}
+
+html.dark {
+  color-scheme: dark;
+  --surface-canvas: #0b0e14;
+  --surface-card: #121722;
+  --surface-subtle: #181f2e;
+  --border-hairline: rgba(255, 255, 255, 0.1);
+  --ink-primary: #f3f4f6;
+  --ink-secondary: #9ca3af;
+  --accent-primary: #60a5fa;
+  --accent-soft: rgba(96, 165, 250, 0.14);
+  --grid-line: rgba(255, 255, 255, 0.04);
+  --header-bg: rgba(11, 14, 20, 0.84);
+}
+
+/* Progressive enhancement with native light-dark() when supported */
+@supports (color: light-dark(#000, #fff)) {
+  :root {
+    --surface-canvas: light-dark(#fafaf8, #0b0e14);
+    --surface-card: light-dark(#ffffff, #121722);
+    --surface-subtle: light-dark(#f2f2ee, #181f2e);
+    --border-hairline: light-dark(#e4e4de, rgba(255, 255, 255, 0.1));
+    --ink-primary: light-dark(#111318, #f3f4f6);
+    --ink-secondary: light-dark(#525866, #9ca3af);
+    --accent-primary: light-dark(#2563eb, #60a5fa);
+    --accent-soft: light-dark(rgba(37, 99, 235, 0.1), rgba(96, 165, 250, 0.14));
+    --grid-line: light-dark(rgba(17, 19, 24, 0.045), rgba(255, 255, 255, 0.04));
+    --header-bg: light-dark(rgba(250, 250, 248, 0.84), rgba(11, 14, 20, 0.84));
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-gutter: stable;
+  background-color: var(--surface-canvas);
+  color: var(--ink-primary);
+}
+
+body {
+  font-family: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background-color: var(--surface-canvas);
+  color: var(--ink-primary);
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Scale root typography subtly on 2K–3K ultrawide screens (2200px–3000px) */
+@media (min-width: 137.5rem) {
+  html {
+    font-size: 17px;
+  }
+}
+
+@media (min-width: 162.5rem) {
+  html {
+    font-size: 18px;
+  }
+}
+
+.font-mono-code {
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+/* Balanced headings & clean paragraph wrapping (modern CSS text-wrap) */
+h1, h2, h3, .text-balance {
+  text-wrap: balance;
+}
+
+p, .text-pretty {
+  text-wrap: pretty;
+}
+
+/* Sticky header scroll-margin offsets for anchor links */
+section[id] {
+  scroll-margin-top: 5.25rem;
+}
+
+/* Defer offscreen rendering on lower sections for snappy initial paint */
+.defer-section {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 720px;
+}
+
+/* Crisp Editorial Background Grid */
+.editorial-grid-bg {
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 36px 36px;
+}
+
+@media (min-width: 64rem) {
+  .editorial-grid-bg {
+    background-size: 48px 48px;
+  }
+}
+
+/* Header Glassmorphism + Scroll Progress Bar */
+.site-header {
+  background-color: var(--header-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.scroll-progress-bar {
+  transform-origin: left center;
+  transform: scaleX(var(--scroll-progress, 0));
+}
+
+/* CSS Scroll-Driven Animation enhancement when browser supports scroll() timeline */
+@supports (animation-timeline: scroll()) {
+  .scroll-progress-bar {
+    transform: scaleX(0);
+    animation: grow-progress linear both;
+    animation-timeline: scroll(root block);
+  }
+
+  @keyframes grow-progress {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+}
+
+/* Container queries on Project Cards so cards adapt to slot size at 320px–3000px */
+.project-card-shell {
+  container-type: inline-size;
+}
+
+@container (min-width: 24rem) {
+  .project-card-header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+/* Role Switcher & Active Filter Indicator */
+.nav-link[aria-current="location"] {
+  color: var(--accent-primary);
+  background-color: var(--accent-soft);
+}
+
+.role-pill {
+  color: var(--ink-secondary);
+  background-color: transparent;
+  transition: background-color 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.role-pill:hover {
+  color: var(--ink-primary);
+}
+
+.role-pill[aria-pressed="true"] {
+  background-color: var(--ink-primary);
+  color: var(--surface-canvas);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.14);
+}
+
+.pillar-highlighted {
+  border-color: var(--accent-primary) !important;
+  box-shadow: 0 0 0 2px var(--accent-soft);
+}
+
+/* Native <dialog> animations (top-layer entry/exit with @starting-style) */
+dialog.modal-dialog {
+  margin: auto;
+  max-height: min(90dvh, 52rem);
+  width: min(calc(100vw - 1.5rem), 46rem);
+  border: 1px solid var(--border-hairline);
+  background-color: var(--surface-card);
+  color: var(--ink-primary);
+  opacity: 0;
+  transform: translateY(12px) scale(0.98);
+  transition:
+    opacity 0.22s ease,
+    transform 0.22s ease,
+    overlay 0.22s allow-discrete,
+    display 0.22s allow-discrete;
+}
+
+dialog.modal-dialog[open] {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+@starting-style {
+  dialog.modal-dialog[open] {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+}
+
+dialog.modal-dialog::backdrop {
+  background-color: rgba(11, 14, 20, 0);
+  backdrop-filter: blur(0px);
+  transition:
+    background-color 0.22s ease,
+    backdrop-filter 0.22s ease,
+    overlay 0.22s allow-discrete,
+    display 0.22s allow-discrete;
+}
+
+dialog.modal-dialog[open]::backdrop {
+  background-color: rgba(11, 14, 20, 0.58);
+  backdrop-filter: blur(4px);
+}
+
+@starting-style {
+  dialog.modal-dialog[open]::backdrop {
+    background-color: rgba(11, 14, 20, 0);
+    backdrop-filter: blur(0px);
+  }
+}
+
+/* Mobile Slide-over Navigation Drawer (<dialog>) */
+dialog.nav-drawer {
+  margin: 0 0 0 auto;
+  height: 100dvh;
+  max-height: 100dvh;
+  width: min(86vw, 22rem);
+  border-left: 1px solid var(--border-hairline);
+  background-color: var(--surface-card);
+  color: var(--ink-primary);
+  opacity: 0;
+  transform: translateX(100%);
+  transition:
+    opacity 0.24s ease,
+    transform 0.24s cubic-bezier(0.22, 1, 0.36, 1),
+    overlay 0.24s allow-discrete,
+    display 0.24s allow-discrete;
+}
+
+dialog.nav-drawer[open] {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@starting-style {
+  dialog.nav-drawer[open] {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+dialog.nav-drawer::backdrop {
+  background-color: rgba(11, 14, 20, 0);
+  transition:
+    background-color 0.24s ease,
+    overlay 0.24s allow-discrete,
+    display 0.24s allow-discrete;
+}
+
+dialog.nav-drawer[open]::backdrop {
+  background-color: rgba(11, 14, 20, 0.52);
+}
+
+@starting-style {
+  dialog.nav-drawer[open]::backdrop {
+    background-color: rgba(11, 14, 20, 0);
+  }
+}
+
+/* Form Validation: Only show errors after user interaction (:user-invalid) */
+.form-control {
+  background-color: var(--surface-canvas);
+  border: 1px solid var(--border-hairline);
+  color: var(--ink-primary);
+  accent-color: var(--accent-primary);
+  transition: border-color 0.16s ease, box-shadow 0.16s ease;
+}
+
+.form-control:focus-visible {
+  outline: none;
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.form-control:user-invalid,
+.form-control[aria-invalid="true"] {
+  border-color: #dc2626;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.12);
+}
+
+.form-control:user-valid {
+  border-color: #16a34a;
+}
+
+/* Auto-growing textarea with graceful fallback */
+textarea.auto-size-field {
+  min-height: 7.5rem;
+  max-height: 18rem;
+  resize: vertical;
+}
+
+@supports (field-sizing: content) {
+  textarea.auto-size-field {
+    field-sizing: content;
+    resize: none;
+  }
+}
+
+/* Toast Notification */
+.toast-banner {
+  transform: translateY(1rem);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.22s ease, opacity 0.22s ease;
+}
+
+.toast-banner.is-visible {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Respect Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

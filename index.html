@@ -1,0 +1,930 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Parshuram Das — Frontend Developer, Product Manager &amp; Data Analyst</title>
+    <meta
+      name="description"
+      content="Portfolio of Parshuram Das — Mumbai & Remote immediate joiner combining mobile-first frontend development (HTML, Tailwind, Vanilla JS), SaaS product lifecycle management, and data cleaning & validation (Excel, Python, SQL)."
+    />
+
+    <!-- Inline SVG Favicon -->
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23111318'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' dominant-baseline='middle' fill='%23ffffff' font-family='system-ui,sans-serif' font-size='26' font-weight='700'%3EPD%3C/text%3E%3C/svg%3E"
+    />
+
+    <!-- Anti-FOUC Theme Initialization (runs before render) -->
+    <script>
+      (function () {
+        var key = "parshuram-portfolio-theme";
+        var saved = null;
+        try {
+          saved = localStorage.getItem(key);
+        } catch (e) {}
+        var prefersDark =
+          window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches;
+        var isDark = saved ? saved === "dark" : prefersDark;
+        if (isDark) {
+          document.documentElement.classList.add("dark");
+        }
+        document.documentElement.style.colorScheme = isDark ? "dark" : "light";
+      })();
+    </script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind CSS v4 Browser CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- Tailwind v4 Custom Breakpoints (consistent rem units from 375px up to 2560px+) & Dark Variant -->
+    <style type="text/tailwindcss">
+      @custom-variant dark (&:where(.dark, .dark *));
+
+      @theme {
+        --breakpoint-xs: 23.4375rem; /* 375px */
+        --breakpoint-bp425: 26.5625rem; /* 425px */
+        --breakpoint-sm: 40rem; /* 640px */
+        --breakpoint-md: 48rem; /* 768px */
+        --breakpoint-lg: 64rem; /* 1024px */
+        --breakpoint-xl: 90rem; /* 1440px */
+        --breakpoint-2xl: 120rem; /* 1920px */
+        --breakpoint-3xl: 160rem; /* 2560px */
+      }
+    </style>
+
+    <!-- Custom Modern CSS Rules -->
+    <link rel="stylesheet" href="css/styles.css" />
+
+    <!-- Portfolio Data & Logic (classic defer works cleanly on both HTTP and file://) -->
+    <script defer src="js/data.js"></script>
+    <script defer src="js/main.js"></script>
+  </head>
+
+  <body class="min-h-screen flex flex-col selection:bg-blue-600 selection:text-white">
+    <!-- Keyboard Skip Link -->
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:px-4 focus:py-2 focus:rounded-lg focus:bg-blue-600 focus:text-white focus:font-semibold focus:shadow-lg"
+    >
+      Skip to main content
+    </a>
+
+    <!-- ===================================================================
+         Sticky Header + Scroll Progress
+         =================================================================== -->
+    <header class="site-header sticky top-0 z-40 border-b border-[var(--border-hairline)]">
+      <div
+        class="mx-auto w-full max-w-[1720px] 3xl:max-w-[1960px] px-4 xs:px-5 bp425:px-6 md:px-10 lg:px-12 xl:px-16 2xl:px-20 h-16 flex items-center justify-between gap-3"
+      >
+        <!-- Brand -->
+        <a
+          href="#home"
+          class="inline-flex items-center gap-2.5 min-w-0 group focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 rounded-lg"
+        >
+          <span
+            class="w-9 h-9 rounded-lg bg-[var(--ink-primary)] text-[var(--surface-canvas)] font-mono-code text-xs font-bold inline-flex items-center justify-center shrink-0 transition-transform group-hover:scale-105"
+          >
+            PD
+          </span>
+          <span class="min-w-0">
+            <span class="block text-sm xs:text-base font-bold tracking-tight text-[var(--ink-primary)] truncate">
+              Parshuram Das
+            </span>
+            <span class="hidden bp425:block text-[11px] font-mono-code text-[var(--ink-secondary)] truncate">
+              Frontend · PM · Data
+            </span>
+          </span>
+        </a>
+
+        <!-- Desktop Navigation (1024px+) -->
+        <nav aria-label="Primary Navigation" class="hidden lg:flex items-center gap-1">
+          <a
+            href="#home"
+            class="nav-link px-3.5 py-2 rounded-lg text-sm font-medium text-[var(--ink-secondary)] hover:text-[var(--ink-primary)] transition-colors"
+          >
+            Home
+          </a>
+          <a
+            href="#work"
+            class="nav-link px-3.5 py-2 rounded-lg text-sm font-medium text-[var(--ink-secondary)] hover:text-[var(--ink-primary)] transition-colors"
+          >
+            Work
+          </a>
+          <a
+            href="#about"
+            class="nav-link px-3.5 py-2 rounded-lg text-sm font-medium text-[var(--ink-secondary)] hover:text-[var(--ink-primary)] transition-colors"
+          >
+            About
+          </a>
+          <a
+            href="#contact"
+            class="nav-link px-3.5 py-2 rounded-lg text-sm font-medium text-[var(--ink-secondary)] hover:text-[var(--ink-primary)] transition-colors"
+          >
+            Contact
+          </a>
+        </nav>
+
+        <!-- Header Actions -->
+        <div class="flex items-center gap-2 shrink-0">
+          <!-- Theme Toggle -->
+          <button
+            type="button"
+            data-theme-toggle
+            aria-pressed="false"
+            aria-label="Toggle color theme"
+            class="w-10 h-10 rounded-lg border border-[var(--border-hairline)] bg-[var(--surface-card)] text-[var(--ink-primary)] inline-flex items-center justify-center hover:bg-[var(--surface-subtle)] transition-colors cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+          >
+            <!-- Sun Icon (shown in dark mode) -->
+            <svg
+              data-icon-sun
+              width="16"
+              height="16"
+              class="hidden w-4 h-4"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="12" r="4" />
+              <path d="M12 2v2" />
+              <path d="M12 20v2" />
+              <path d="m4.93 4.93 1.41 1.41" />
+              <path d="m17.66 17.66 1.41 1.41" />
+              <path d="M2 12h2" />
+              <path d="M20 12h2" />
+              <path d="m6.34 17.66-1.41 1.41" />
+              <path d="m19.07 4.93-1.41 1.41" />
+            </svg>
+            <!-- Moon Icon (shown in light mode) -->
+            <svg
+              data-icon-moon
+              width="16"
+              height="16"
+              class="w-4 h-4"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+            </svg>
+          </button>
+
+          <!-- Quick CTA (shown from 640px+) -->
+          <a
+            href="#contact"
+            class="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-sm font-semibold bg-[var(--ink-primary)] text-[var(--surface-canvas)] hover:opacity-90 transition-opacity"
+          >
+            Hire Me
+          </a>
+
+          <!-- Mobile Drawer Trigger (320px–1023px) -->
+          <button
+            id="mobile-menu-open"
+            type="button"
+            aria-label="Open navigation menu"
+            aria-controls="mobile-drawer"
+            class="lg:hidden w-10 h-10 rounded-lg border border-[var(--border-hairline)] bg-[var(--surface-card)] text-[var(--ink-primary)] inline-flex items-center justify-center hover:bg-[var(--surface-subtle)] transition-colors cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+          >
+            <svg
+              width="20"
+              height="20"
+              class="w-5 h-5"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              aria-hidden="true"
+            >
+              <line x1="4" x2="20" y1="7" y2="7" />
+              <line x1="4" x2="20" y1="12" y2="12" />
+              <line x1="4" x2="20" y1="17" y2="17" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Scroll Progress Indicator -->
+      <div class="h-[2px] w-full bg-transparent overflow-hidden" aria-hidden="true">
+        <div class="scroll-progress-bar h-full w-full bg-blue-600 dark:bg-blue-400"></div>
+      </div>
+    </header>
+
+    <!-- ===================================================================
+         Mobile Navigation Drawer (<dialog>)
+         =================================================================== -->
+    <dialog
+      id="mobile-drawer"
+      closedby="any"
+      aria-label="Mobile navigation menu"
+      class="nav-drawer p-0"
+    >
+      <div class="h-full flex flex-col justify-between p-5">
+        <div>
+          <div class="flex items-center justify-between pb-4 border-b border-[var(--border-hairline)]">
+            <span class="font-bold text-base text-[var(--ink-primary)]">Navigation</span>
+            <button
+              id="mobile-menu-close"
+              type="button"
+              aria-label="Close navigation menu"
+              class="w-9 h-9 rounded-lg border border-[var(--border-hairline)] inline-flex items-center justify-center text-[var(--ink-secondary)] hover:text-[var(--ink-primary)] cursor-pointer"
+            >
+              <svg width="16" height="16" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <path d="M18 6 6 18" />
+                <path d="m6 6 12 12" />
+              </svg>
+            </button>
+          </div>
+
+          <nav aria-label="Mobile Navigation" class="mt-5 flex flex-col gap-1.5">
+            <a href="#home" class="nav-link px-3.5 py-3 rounded-xl text-base font-semibold text-[var(--ink-primary)] hover:bg-[var(--surface-subtle)]">
+              Home
+            </a>
+            <a href="#work" class="nav-link px-3.5 py-3 rounded-xl text-base font-semibold text-[var(--ink-primary)] hover:bg-[var(--surface-subtle)]">
+              Selected Work
+            </a>
+            <a href="#about" class="nav-link px-3.5 py-3 rounded-xl text-base font-semibold text-[var(--ink-primary)] hover:bg-[var(--surface-subtle)]">
+              About &amp; Capabilities
+            </a>
+            <a href="#contact" class="nav-link px-3.5 py-3 rounded-xl text-base font-semibold text-[var(--ink-primary)] hover:bg-[var(--surface-subtle)]">
+              Contact
+            </a>
+          </nav>
+        </div>
+
+        <div class="pt-4 border-t border-[var(--border-hairline)] space-y-3">
+          <div class="text-xs font-mono-code text-[var(--ink-secondary)]">
+            Mumbai, Maharashtra / Remote · Immediate Joiner
+          </div>
+          <a
+            href="mailto:dasparshu74@gmail.com"
+            class="block w-full text-center px-4 py-2.5 rounded-xl text-sm font-semibold bg-[var(--ink-primary)] text-[var(--surface-canvas)]"
+          >
+            dasparshu74@gmail.com
+          </a>
+        </div>
+      </div>
+    </dialog>
+
+    <!-- ===================================================================
+         MAIN CONTENT
+         =================================================================== -->
+    <main id="main-content" class="flex-1">
+      <!-- ===============================================================
+           1. HOME / HERO SECTION
+           =============================================================== -->
+      <section
+        id="home"
+        class="relative editorial-grid-bg border-b border-[var(--border-hairline)] overflow-hidden"
+      >
+        <!-- Soft Edge Mask Overlay -->
+        <div
+          class="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[var(--surface-canvas)]"
+          aria-hidden="true"
+        ></div>
+
+        <div
+          class="relative mx-auto w-full max-w-[1720px] 3xl:max-w-[1960px] px-4 xs:px-5 bp425:px-6 md:px-10 lg:px-12 xl:px-16 2xl:px-20 py-10 xs:py-12 bp425:py-14 md:py-16 lg:py-20 xl:py-24 2xl:py-28"
+        >
+          <!-- Availability Pill + Role Switcher Bar -->
+          <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8 lg:mb-12">
+            <!-- Status Badge -->
+            <div
+              class="inline-flex items-center gap-2 self-start px-3 py-1.5 rounded-full border border-[var(--border-hairline)] bg-[var(--surface-card)] shadow-2xs"
+            >
+              <span class="relative flex h-2 w-2 shrink-0" aria-hidden="true">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
+              <span class="text-xs xs:text-[13px] font-medium text-[var(--ink-primary)]">
+                Immediate Joiner <span class="text-[var(--ink-secondary)]">· Mumbai, MH / Remote</span>
+              </span>
+            </div>
+
+            <!-- Interactive Role Switcher -->
+            <div
+              role="group"
+              aria-label="Switch portfolio career track"
+              class="grid grid-cols-2 sm:inline-flex sm:flex-wrap gap-1 p-1 rounded-xl border border-[var(--border-hairline)] bg-[var(--surface-card)] shadow-2xs"
+            >
+              <button
+                type="button"
+                data-role-btn="all"
+                aria-pressed="true"
+                class="role-pill px-3 py-1.5 rounded-lg text-xs xs:text-[13px] font-semibold cursor-pointer text-center"
+              >
+                All Tracks
+              </button>
+              <button
+                type="button"
+                data-role-btn="frontend"
+                aria-pressed="false"
+                class="role-pill px-3 py-1.5 rounded-lg text-xs xs:text-[13px] font-semibold cursor-pointer text-center"
+              >
+                Frontend
+              </button>
+              <button
+                type="button"
+                data-role-btn="product"
+                aria-pressed="false"
+                class="role-pill px-3 py-1.5 rounded-lg text-xs xs:text-[13px] font-semibold cursor-pointer text-center"
+              >
+                Product Mgr
+              </button>
+              <button
+                type="button"
+                data-role-btn="analyst"
+                aria-pressed="false"
+                class="role-pill px-3 py-1.5 rounded-lg text-xs xs:text-[13px] font-semibold cursor-pointer text-center"
+              >
+                Data Analyst
+              </button>
+            </div>
+          </div>
+
+          <!-- Editorial Two-Column Hero Grid -->
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-14 items-start">
+            <!-- Left Narrative -->
+            <div class="lg:col-span-7 min-w-0">
+              <div class="flex flex-wrap items-center gap-2 mb-3">
+                <span class="text-xs xs:text-sm font-mono-code font-semibold uppercase tracking-wider text-[var(--accent-primary)]">
+                  Parshuram Das
+                </span>
+                <span class="text-[var(--border-hairline)]" aria-hidden="true">/</span>
+                <span
+                  id="hero-eyebrow"
+                  class="text-xs xs:text-sm font-mono-code text-[var(--ink-secondary)]"
+                >
+                  Frontend · SaaS Product · Data Analytics
+                </span>
+              </div>
+
+              <h1
+                class="text-[clamp(1.75rem,5.2vw,3.35rem)] lg:text-[clamp(2.4rem,3.5vw,4.1rem)] font-extrabold tracking-tight leading-[1.09] text-[var(--ink-primary)]"
+              >
+                <span id="hero-headline-lead">I build responsive web interfaces,</span>
+                <span id="hero-headline-accent" class="block text-[var(--accent-primary)] mt-1">
+                  shape SaaS products &amp; validate data.
+                </span>
+              </h1>
+
+              <p
+                id="hero-summary"
+                class="mt-5 text-sm xs:text-base lg:text-lg text-[var(--ink-secondary)] leading-relaxed max-w-[62ch]"
+              >
+                Fresh post-graduate based in Mumbai (open to remote &amp; immediate joining). I combine mobile-first frontend engineering, SaaS lifecycle product thinking from build to production, and hands-on data cleaning &amp; validation with Excel, Python, and SQL.
+              </p>
+
+              <!-- Focus Stack Pills -->
+              <div
+                id="hero-focus-tags"
+                aria-label="Highlighted capabilities for selected track"
+                class="mt-6 flex flex-wrap gap-2"
+              ></div>
+
+              <!-- Primary Actions -->
+              <div class="mt-8 flex flex-col bp425:flex-row bp425:items-center gap-3">
+                <a
+                  href="#work"
+                  class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold bg-[var(--ink-primary)] text-[var(--surface-canvas)] hover:opacity-90 transition-opacity shadow-sm"
+                >
+                  Explore Selected Work
+                  <svg width="16" height="16" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M5 12h14" />
+                    <path d="m12 5 7 7-7 7" />
+                  </svg>
+                </a>
+                <a
+                  href="#contact"
+                  class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold border border-[var(--border-hairline)] bg-[var(--surface-card)] text-[var(--ink-primary)] hover:bg-[var(--surface-subtle)] transition-colors"
+                >
+                  Get in Touch
+                </a>
+              </div>
+
+              <!-- Quick Profile Links -->
+              <div class="mt-7 pt-6 border-t border-[var(--border-hairline)] flex flex-wrap items-center gap-x-5 gap-y-2.5 text-xs xs:text-sm text-[var(--ink-secondary)]">
+                <a
+                  href="https://github.com/Parshuram-Das"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-1.5 hover:text-[var(--ink-primary)] transition-colors font-medium"
+                >
+                  <svg width="16" height="16" class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2Z" />
+                  </svg>
+                  GitHub
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/parshuram-das-416358268"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-1.5 hover:text-[var(--ink-primary)] transition-colors font-medium"
+                >
+                  <svg width="16" height="16" class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77Z" />
+                  </svg>
+                  LinkedIn
+                </a>
+                <button
+                  type="button"
+                  data-copy-email
+                  class="inline-flex items-center gap-1.5 hover:text-[var(--ink-primary)] transition-colors font-mono-code cursor-pointer break-all"
+                  title="Click to copy email address"
+                >
+                  <svg width="16" height="16" class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect width="20" height="16" x="2" y="4" rx="2" />
+                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                  </svg>
+                  dasparshu74@gmail.com
+                </button>
+              </div>
+            </div>
+
+            <!-- Right Snapshot Card -->
+            <aside class="lg:col-span-5 min-w-0">
+              <div class="rounded-2xl border border-[var(--border-hairline)] bg-[var(--surface-card)] p-5 bp425:p-6 shadow-sm">
+                <div class="flex flex-wrap items-center justify-between gap-2 pb-4 border-b border-[var(--border-hairline)]">
+                  <div>
+                    <span class="text-[11px] font-mono-code uppercase tracking-wider text-[var(--ink-secondary)] block">
+                      Profile Brief
+                    </span>
+                    <h2 id="snapshot-title" class="text-base xs:text-lg font-bold text-[var(--ink-primary)]">
+                      Cross-Functional Snapshot
+                    </h2>
+                  </div>
+                  <span class="px-2.5 py-1 rounded-md text-xs font-mono-code bg-[var(--surface-subtle)] text-[var(--ink-primary)] border border-[var(--border-hairline)]">
+                    Fresh Post-Grad
+                  </span>
+                </div>
+
+                <!-- Dynamic Role Metrics -->
+                <div id="snapshot-metrics" class="mt-4 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-3"></div>
+
+                <!-- Core Strengths Strip -->
+                <div class="mt-4 pt-4 border-t border-[var(--border-hairline)] flex flex-wrap items-center justify-between gap-2 text-xs text-[var(--ink-secondary)]">
+                  <span class="font-medium text-[var(--ink-primary)]">Strengths:</span>
+                  <span class="font-mono-code">Analytical · Detail-Oriented · Quick Learner</span>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===============================================================
+           2. WORK / PROJECTS SHOWCASE SECTION
+           =============================================================== -->
+      <section id="work" class="defer-section border-b border-[var(--border-hairline)]">
+        <div
+          class="mx-auto w-full max-w-[1720px] 3xl:max-w-[1960px] px-4 xs:px-5 bp425:px-6 md:px-10 lg:px-12 xl:px-16 2xl:px-20 py-14 md:py-20 xl:py-24"
+        >
+          <!-- Section Header + Filter Controls -->
+          <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10">
+            <div class="max-w-[60ch]">
+              <span class="text-xs font-mono-code font-semibold uppercase tracking-wider text-[var(--accent-primary)]">
+                01 / Selected Work
+              </span>
+              <h2 class="mt-2 text-2xl xs:text-3xl lg:text-4xl font-extrabold tracking-tight text-[var(--ink-primary)]">
+                Projects &amp; Case Studies
+              </h2>
+              <p class="mt-2.5 text-sm xs:text-base text-[var(--ink-secondary)]">
+                Explore hands-on work spanning data cleaning and classification pipelines, product trade-offs, and responsive mobile-first web architecture.
+              </p>
+            </div>
+
+            <!-- Synchronized Filter Pills -->
+            <div class="flex flex-col items-start lg:items-end gap-2">
+              <div
+                role="group"
+                aria-label="Filter projects by track"
+                class="grid grid-cols-2 sm:inline-flex sm:flex-wrap gap-1 p-1 rounded-xl border border-[var(--border-hairline)] bg-[var(--surface-card)] w-full sm:w-auto"
+              >
+                <button type="button" data-role-btn="all" aria-pressed="true" class="role-pill px-3 py-1.5 rounded-lg text-xs font-semibold cursor-pointer">
+                  All
+                </button>
+                <button type="button" data-role-btn="frontend" aria-pressed="false" class="role-pill px-3 py-1.5 rounded-lg text-xs font-semibold cursor-pointer">
+                  Frontend
+                </button>
+                <button type="button" data-role-btn="product" aria-pressed="false" class="role-pill px-3 py-1.5 rounded-lg text-xs font-semibold cursor-pointer">
+                  Product
+                </button>
+                <button type="button" data-role-btn="analyst" aria-pressed="false" class="role-pill px-3 py-1.5 rounded-lg text-xs font-semibold cursor-pointer">
+                  Data &amp; Analytics
+                </button>
+              </div>
+              <p id="projects-count" class="text-xs font-mono-code text-[var(--ink-secondary)]" aria-live="polite"></p>
+            </div>
+          </div>
+
+          <!-- Responsive Project Grid -->
+          <div
+            id="projects-grid"
+            class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 bp425:gap-6 2xl:gap-8"
+          ></div>
+
+          <!-- GitHub Profile Banner -->
+          <div class="mt-8 rounded-2xl border border-[var(--border-hairline)] bg-[var(--surface-subtle)] p-4 bp425:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <p class="text-xs xs:text-sm text-[var(--ink-secondary)]">
+              <strong class="text-[var(--ink-primary)]">Repositories &amp; updates:</strong> Direct repository links for Customer Churn Analysis and Spam Email Detector are being organized—browse my GitHub profile anytime for updates.
+            </p>
+            <a
+              href="https://github.com/Parshuram-Das"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-lg text-xs xs:text-sm font-semibold border border-[var(--border-hairline)] bg-[var(--surface-card)] text-[var(--ink-primary)] hover:border-blue-500/50 transition-colors shrink-0"
+            >
+              github.com/Parshuram-Das ↗
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===============================================================
+           3. ABOUT & CAPABILITIES SECTION
+           =============================================================== -->
+      <section id="about" class="defer-section border-b border-[var(--border-hairline)]">
+        <div
+          class="mx-auto w-full max-w-[1720px] 3xl:max-w-[1960px] px-4 xs:px-5 bp425:px-6 md:px-10 lg:px-12 xl:px-16 2xl:px-20 py-14 md:py-20 xl:py-24"
+        >
+          <!-- Editorial About Intro -->
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 mb-12">
+            <div class="lg:col-span-5">
+              <span class="text-xs font-mono-code font-semibold uppercase tracking-wider text-[var(--accent-primary)]">
+                02 / About Me
+              </span>
+              <h2 class="mt-2 text-2xl xs:text-3xl lg:text-4xl font-extrabold tracking-tight text-[var(--ink-primary)]">
+                Detail-driven across UI, SaaS execution, and data integrity.
+              </h2>
+
+              <!-- Quick Facts Table -->
+              <dl class="mt-6 grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-1 gap-3">
+                <div class="rounded-xl border border-[var(--border-hairline)] bg-[var(--surface-card)] p-3.5">
+                  <dt class="text-[11px] font-mono-code uppercase tracking-wider text-[var(--ink-secondary)]">Location Preference</dt>
+                  <dd class="text-sm font-semibold text-[var(--ink-primary)] mt-0.5">Mumbai, Maharashtra or Remote</dd>
+                </div>
+                <div class="rounded-xl border border-[var(--border-hairline)] bg-[var(--surface-card)] p-3.5">
+                  <dt class="text-[11px] font-mono-code uppercase tracking-wider text-[var(--ink-secondary)]">Availability &amp; Education</dt>
+                  <dd class="text-sm font-semibold text-[var(--ink-primary)] mt-0.5">Immediate Joiner · Fresh Post-Graduate</dd>
+                </div>
+              </dl>
+            </div>
+
+            <div class="lg:col-span-7 flex flex-col justify-center space-y-4 text-sm xs:text-base text-[var(--ink-secondary)] leading-relaxed max-w-[68ch]">
+              <p>
+                I am <strong class="text-[var(--ink-primary)]">Parshuram Das</strong>, a fresh post-graduate who thrives at the intersection of clean user interfaces, structured SaaS product delivery, and trustworthy data. Whether debugging a layout edge case on a 320px screen or validating thousands of rows in SQL, I bring high attention to detail and learn new tools quickly.
+              </p>
+              <p>
+                On the <strong class="text-[var(--ink-primary)]">Frontend</strong> side, I enjoy building responsive, accessible web interfaces with HTML, CSS, Tailwind CSS, and Vanilla JavaScript that feel natural on phones, laptops, and ultrawide monitors alike.
+              </p>
+              <p>
+                From a <strong class="text-[var(--ink-primary)]">Product &amp; Data</strong> lens, I approach builds like a SaaS product—guiding features from early development and testing through production deployment—backed by practical experience cleaning and validating datasets using <strong class="text-[var(--ink-primary)]">Excel, Python, and SQL</strong>.
+              </p>
+            </div>
+          </div>
+
+          <!-- 3-Track Capability Pillars -->
+          <div id="about-pillars-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 bp425:gap-6 2xl:gap-8"></div>
+
+          <!-- End-to-End Delivery Workflow -->
+          <div class="mt-10">
+            <h3 class="text-sm font-mono-code uppercase tracking-wider text-[var(--ink-secondary)] mb-4">
+              How I Approach a SaaS Product &amp; Dataset
+            </h3>
+            <div id="workflow-steps" class="grid grid-cols-1 bp425:grid-cols-2 lg:grid-cols-4 gap-4"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===============================================================
+           4. CONTACT SECTION
+           =============================================================== -->
+      <section id="contact" class="defer-section">
+        <div
+          class="mx-auto w-full max-w-[1720px] 3xl:max-w-[1960px] px-4 xs:px-5 bp425:px-6 md:px-10 lg:px-12 xl:px-16 2xl:px-20 py-14 md:py-20 xl:py-24"
+        >
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+            <!-- Left Direct Contact Info -->
+            <div class="lg:col-span-5">
+              <span class="text-xs font-mono-code font-semibold uppercase tracking-wider text-[var(--accent-primary)]">
+                03 / Contact
+              </span>
+              <h2 class="mt-2 text-2xl xs:text-3xl lg:text-4xl font-extrabold tracking-tight text-[var(--ink-primary)]">
+                Ready to join immediately in Mumbai or remotely.
+              </h2>
+              <p class="mt-3 text-sm xs:text-base text-[var(--ink-secondary)] leading-relaxed max-w-[54ch]">
+                Hiring for an entry-level or junior <strong class="text-[var(--ink-primary)]">Frontend Developer</strong>, <strong class="text-[var(--ink-primary)]">Product Manager</strong>, or <strong class="text-[var(--ink-primary)]">Business / Data Analyst</strong> role? Let’s connect.
+              </p>
+
+              <!-- Direct Contact Cards -->
+              <div class="mt-6 space-y-3">
+                <div class="rounded-xl border border-[var(--border-hairline)] bg-[var(--surface-card)] p-4 flex flex-col xs:flex-row xs:items-center justify-between gap-3">
+                  <div class="min-w-0">
+                    <span class="text-[11px] font-mono-code uppercase tracking-wider text-[var(--ink-secondary)] block">Email</span>
+                    <a
+                      href="mailto:dasparshu74@gmail.com"
+                      class="text-sm font-semibold text-[var(--ink-primary)] hover:text-[var(--accent-primary)] transition-colors break-all"
+                    >
+                      dasparshu74@gmail.com
+                    </a>
+                  </div>
+                  <button
+                    type="button"
+                    data-copy-email
+                    class="self-start xs:self-center px-3 py-1.5 rounded-lg text-xs font-semibold border border-[var(--border-hairline)] bg-[var(--surface-subtle)] text-[var(--ink-primary)] hover:border-blue-500/50 transition-colors cursor-pointer shrink-0"
+                  >
+                    Copy Email
+                  </button>
+                </div>
+
+                <a
+                  href="https://www.linkedin.com/in/parshuram-das-416358268"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="rounded-xl border border-[var(--border-hairline)] bg-[var(--surface-card)] p-4 flex items-center justify-between gap-3 hover:border-blue-500/45 transition-colors"
+                >
+                  <div class="min-w-0">
+                    <span class="text-[11px] font-mono-code uppercase tracking-wider text-[var(--ink-secondary)] block">LinkedIn</span>
+                    <span class="text-sm font-semibold text-[var(--ink-primary)] block truncate">
+                      linkedin.com/in/parshuram-das-416358268
+                    </span>
+                  </div>
+                  <span class="text-sm font-mono-code text-[var(--accent-primary)] shrink-0">↗</span>
+                </a>
+
+                <a
+                  href="https://github.com/Parshuram-Das"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="rounded-xl border border-[var(--border-hairline)] bg-[var(--surface-card)] p-4 flex items-center justify-between gap-3 hover:border-blue-500/45 transition-colors"
+                >
+                  <div class="min-w-0">
+                    <span class="text-[11px] font-mono-code uppercase tracking-wider text-[var(--ink-secondary)] block">GitHub</span>
+                    <span class="text-sm font-semibold text-[var(--ink-primary)] block truncate">
+                      github.com/Parshuram-Das
+                    </span>
+                  </div>
+                  <span class="text-sm font-mono-code text-[var(--accent-primary)] shrink-0">↗</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Right Accessible Contact Form -->
+            <div class="lg:col-span-7">
+              <form
+                id="contact-form"
+                novalidate
+                class="rounded-2xl border border-[var(--border-hairline)] bg-[var(--surface-card)] p-5 bp425:p-6 md:p-8 shadow-sm space-y-5"
+              >
+                <div>
+                  <h3 class="text-lg font-bold text-[var(--ink-primary)]">Send a Message</h3>
+                  <p class="text-xs xs:text-sm text-[var(--ink-secondary)] mt-0.5">
+                    Fill in your inquiry below to prepare a pre-filled email or copyable draft.
+                  </p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label for="contact-name" class="block text-xs font-semibold text-[var(--ink-primary)] mb-1.5">
+                      Your Name <span class="text-red-500" aria-hidden="true">*</span>
+                    </label>
+                    <input
+                      id="contact-name"
+                      name="name"
+                      type="text"
+                      required
+                      minlength="2"
+                      autocomplete="name"
+                      enterkeyhint="next"
+                      placeholder="e.g. Ananya Sharma"
+                      aria-describedby="contact-name-error"
+                      class="form-control w-full rounded-xl px-3.5 py-2.5 text-sm"
+                    />
+                    <p id="contact-name-error" class="hidden mt-1.5 text-xs text-red-600 dark:text-red-400" role="alert"></p>
+                  </div>
+
+                  <div>
+                    <label for="contact-email" class="block text-xs font-semibold text-[var(--ink-primary)] mb-1.5">
+                      Work Email <span class="text-red-500" aria-hidden="true">*</span>
+                    </label>
+                    <input
+                      id="contact-email"
+                      name="email"
+                      type="email"
+                      required
+                      autocomplete="email"
+                      enterkeyhint="next"
+                      placeholder="you@company.com"
+                      aria-describedby="contact-email-error"
+                      class="form-control w-full rounded-xl px-3.5 py-2.5 text-sm"
+                    />
+                    <p id="contact-email-error" class="hidden mt-1.5 text-xs text-red-600 dark:text-red-400" role="alert"></p>
+                  </div>
+                </div>
+
+                <div>
+                  <label for="contact-role" class="block text-xs font-semibold text-[var(--ink-primary)] mb-1.5">
+                    Role / Opportunity Track
+                  </label>
+                  <select
+                    id="contact-role"
+                    name="role"
+                    class="form-control w-full rounded-xl px-3.5 py-2.5 text-sm cursor-pointer"
+                  >
+                    <option value="General / Multi-Role Opportunity">General / Multi-Role Opportunity</option>
+                    <option value="Frontend Developer">Frontend Developer</option>
+                    <option value="Product Manager">Product Manager</option>
+                    <option value="Business / Data Analyst">Business / Data Analyst</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label for="contact-message" class="block text-xs font-semibold text-[var(--ink-primary)] mb-1.5">
+                    Message <span class="text-red-500" aria-hidden="true">*</span>
+                  </label>
+                  <textarea
+                    id="contact-message"
+                    name="message"
+                    required
+                    minlength="10"
+                    rows="4"
+                    enterkeyhint="done"
+                    placeholder="Share role details, interview availability, or project collaboration..."
+                    aria-describedby="contact-message-error"
+                    class="form-control auto-size-field w-full rounded-xl px-3.5 py-2.5 text-sm"
+                  ></textarea>
+                  <p id="contact-message-error" class="hidden mt-1.5 text-xs text-red-600 dark:text-red-400" role="alert"></p>
+                </div>
+
+                <div class="flex flex-col bp425:flex-row bp425:items-center justify-between gap-3">
+                  <button
+                    type="submit"
+                    class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold bg-[var(--ink-primary)] text-[var(--surface-canvas)] hover:opacity-90 transition-opacity cursor-pointer"
+                  >
+                    Prepare Message
+                  </button>
+                  <span class="text-xs text-[var(--ink-secondary)]">
+                    Direct inbox: <span class="font-mono-code">dasparshu74@gmail.com</span>
+                  </span>
+                </div>
+
+                <p id="form-live-status" class="sr-only" aria-live="polite"></p>
+
+                <!-- Static-Friendly Delivery Card (appears after valid submit) -->
+                <div
+                  id="form-result"
+                  class="hidden rounded-xl border border-emerald-500/35 bg-emerald-500/10 p-4 space-y-3"
+                >
+                  <p class="text-xs xs:text-sm font-medium text-[var(--ink-primary)]">
+                    Your inquiry is validated and ready to send to <span class="font-mono-code">dasparshu74@gmail.com</span>:
+                  </p>
+                  <div class="flex flex-col bp425:flex-row gap-2.5">
+                    <a
+                      id="form-mailto-link"
+                      href="mailto:dasparshu74@gmail.com"
+                      class="inline-flex items-center justify-center px-4 py-2 rounded-lg text-xs xs:text-sm font-semibold bg-[var(--ink-primary)] text-[var(--surface-canvas)] hover:opacity-90"
+                    >
+                      Open Email App ↗
+                    </a>
+                    <button
+                      id="form-copy-draft"
+                      type="button"
+                      class="inline-flex items-center justify-center px-4 py-2 rounded-lg text-xs xs:text-sm font-semibold border border-[var(--border-hairline)] bg-[var(--surface-card)] text-[var(--ink-primary)] hover:bg-[var(--surface-subtle)] cursor-pointer"
+                    >
+                      Copy Message Draft
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ===================================================================
+         FOOTER
+         =================================================================== -->
+    <footer class="border-t border-[var(--border-hairline)] bg-[var(--surface-card)]">
+      <div
+        class="mx-auto w-full max-w-[1720px] 3xl:max-w-[1960px] px-4 xs:px-5 bp425:px-6 md:px-10 lg:px-12 xl:px-16 2xl:px-20 py-7 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-xs xs:text-sm text-[var(--ink-secondary)]"
+      >
+        <p>
+          &copy; 2026 <strong class="text-[var(--ink-primary)]">Parshuram Das</strong> · Built mobile-first (320px–3000px) with HTML, Tailwind &amp; Vanilla JS.
+        </p>
+        <div class="flex flex-wrap items-center gap-4">
+          <a href="#home" class="hover:text-[var(--ink-primary)] transition-colors">Home</a>
+          <a href="#work" class="hover:text-[var(--ink-primary)] transition-colors">Work</a>
+          <a href="#about" class="hover:text-[var(--ink-primary)] transition-colors">About</a>
+          <a href="#contact" class="hover:text-[var(--ink-primary)] transition-colors">Contact</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ===================================================================
+         PROJECT CASE STUDY MODAL (<dialog>)
+         =================================================================== -->
+    <dialog
+      id="project-dialog"
+      closedby="any"
+      aria-labelledby="modal-project-title"
+      class="modal-dialog rounded-2xl p-0 shadow-2xl overflow-hidden"
+    >
+      <div class="max-h-[90dvh] overflow-y-auto p-5 bp425:p-6 md:p-7 space-y-5">
+        <div class="flex items-start justify-between gap-4 pb-4 border-b border-[var(--border-hairline)]">
+          <div>
+            <div id="modal-project-badges" class="flex flex-wrap gap-1.5 mb-2"></div>
+            <h3 id="modal-project-title" class="text-xl bp425:text-2xl font-extrabold text-[var(--ink-primary)]"></h3>
+            <p id="modal-project-subtitle" class="text-xs xs:text-sm font-medium text-[var(--accent-primary)] mt-1"></p>
+          </div>
+          <button
+            id="modal-close-btn"
+            type="button"
+            aria-label="Close case study modal"
+            class="w-9 h-9 rounded-lg border border-[var(--border-hairline)] inline-flex items-center justify-center text-[var(--ink-secondary)] hover:text-[var(--ink-primary)] shrink-0 cursor-pointer"
+          >
+            <svg width="16" height="16" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <path d="M18 6 6 18" />
+              <path d="m6 6 12 12" />
+            </svg>
+          </button>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-mono-code uppercase tracking-wider text-[var(--ink-secondary)] mb-1.5">Objective</h4>
+          <p id="modal-project-objective" class="text-sm text-[var(--ink-primary)] leading-relaxed"></p>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-mono-code uppercase tracking-wider text-[var(--ink-secondary)] mb-2">Execution &amp; Validation</h4>
+          <ul id="modal-project-approach" class="list-disc pl-5 space-y-1.5"></ul>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-mono-code uppercase tracking-wider text-[var(--ink-secondary)] mb-2">Key Deliverables</h4>
+          <ul id="modal-project-deliverables" class="list-disc pl-5 space-y-1.5"></ul>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-mono-code uppercase tracking-wider text-[var(--ink-secondary)] mb-2">Tools &amp; Stack</h4>
+          <div id="modal-project-stack" class="flex flex-wrap gap-1.5"></div>
+        </div>
+
+        <div class="pt-4 border-t border-[var(--border-hairline)] flex flex-col bp425:flex-row bp425:items-center justify-between gap-3">
+          <p id="modal-project-repo-note" class="text-xs text-[var(--ink-secondary)]">
+            Direct repository URL updating soon—links to GitHub profile in the meantime.
+          </p>
+          <a
+            id="modal-project-repo"
+            href="https://github.com/Parshuram-Das"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center px-4 py-2.5 rounded-xl text-sm font-semibold bg-[var(--ink-primary)] text-[var(--surface-canvas)] hover:opacity-90 shrink-0"
+          >
+            Open GitHub Profile ↗
+          </a>
+        </div>
+      </div>
+    </dialog>
+
+    <!-- Back-to-Top Floating Button -->
+    <button
+      id="back-to-top"
+      type="button"
+      aria-label="Back to top"
+      class="fixed bottom-5 right-4 xs:right-5 z-30 w-10 h-10 rounded-full border border-[var(--border-hairline)] bg-[var(--surface-card)] text-[var(--ink-primary)] shadow-md inline-flex items-center justify-center opacity-0 pointer-events-none translate-y-2 transition-all hover:bg-[var(--surface-subtle)] cursor-pointer"
+    >
+      <svg width="16" height="16" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="m18 15-6-6-6 6" />
+      </svg>
+    </button>
+
+    <!-- Toast Notification Banner -->
+    <div
+      id="toast-banner"
+      role="status"
+      aria-live="polite"
+      class="toast-banner fixed bottom-5 left-1/2 -translate-x-1/2 z-50 max-w-[calc(100vw-2rem)] px-4 py-2.5 rounded-xl bg-[var(--ink-primary)] text-[var(--surface-canvas)] text-xs xs:text-sm font-medium shadow-xl"
+    >
+      <span id="toast-message"></span>
+    </div>
+  </body>
+</html>
